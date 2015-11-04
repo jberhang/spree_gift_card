@@ -3,8 +3,8 @@ module SpreeGiftCard
     class InstallGenerator < Rails::Generators::Base
 
       def add_javascripts
-        append_file "vendor/assets/javascripts/spree/frontend/all.js", "//= require spree/frontend/spree_gift_card\n"
-        append_file "vendor/assets/javascripts/spree/backend/all.js", "//= require spree/backend/spree_gift_card\n"
+        # append_file "vendor/assets/javascripts/spree/frontend/all.js", "//= require spree/frontend/spree_gift_card\n"
+        # append_file "vendor/assets/javascripts/spree/backend/all.js", "//= require spree/backend/spree_gift_card\n"
       end
 
       def add_stylesheets

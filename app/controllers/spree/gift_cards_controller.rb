@@ -1,9 +1,20 @@
 module Spree
   class GiftCardsController < Spree::StoreController
 
+    before_filter :clear_existing_carts
+    before_filter :fetch_jumbotron
+
     def new
+      set_current_location(params[:city])
       find_gift_card_variants
       @gift_card = GiftCard.new
+    end
+
+    def clear_existing_carts
+      # if current_order
+      #   current_order.destroy
+      #   flash[:notice] = 'Sorry.. Gift cards must be purchased seperately'
+      # end
     end
 
     def create
@@ -19,8 +30,11 @@ module Spree
           line_item.price = @gift_card.variant.price
           # Add to order
           order = current_order(create_order_if_necessary: true)
+
+          order.special_instructions = current_location[1]
+
           order.line_items << line_item
-          line_item.order=order
+          line_item.order = order
           order.update_totals
           order.save!
           # Save gift card

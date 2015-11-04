@@ -2,7 +2,7 @@ Spree::CheckoutController.class_eval do
 
   Spree::PermittedAttributes.checkout_attributes << :gift_code
 
-  durably_decorate :update, mode: 'soft', sha: '9774bcd294f748bd6185a0c8f7d518e624b99ff7' do
+  durably_decorate :update, mode: 'soft', sha: '9454577434a1b3f3b5cdb1c0d74542dc0a14070a' do
     if @order.update_from_params(params, permitted_checkout_attributes, request.headers.env)
       if @order.gift_code.present?
         render :edit and return unless apply_gift_code
