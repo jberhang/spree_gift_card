@@ -5,9 +5,12 @@ Spree::Order.class_eval do
   # Finalizes an in progress order after checkout is complete.
   # Called after transition to complete state when payments will have been processed.
   def finalize_with_gift_card!
+    puts "finalize_with_gift_card! ...................................... "
     finalize_without_gift_card!
+    puts "......................................finalize_without_gift_card!"
     # Record any gift card redemptions.
     self.adjustments.where(source_type: 'Spree::GiftCard').each do |adjustment|
+      puts "adjustment........ #{adjustment}"
       adjustment.source.debit(adjustment.amount, self)
     end
   end
