@@ -2,7 +2,7 @@ module Spree
   class GiftCardsController < Spree::StoreController
 
     before_filter :clear_existing_carts
-    before_filter :fetch_jumbotron
+    before_filter :fetch_jumbotron, :fetch_promotion
 
     def new
       set_current_location(params[:city])
