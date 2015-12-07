@@ -1,6 +1,7 @@
 module Spree
   class GiftCardsController < Spree::StoreController
-
+    include ApplicationHelper
+    
     before_filter :clear_existing_carts
     before_filter :fetch_jumbotron, :fetch_promotion
 
